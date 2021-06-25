@@ -41,6 +41,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.javalin</groupId>
+			<artifactId>javalin-bundle</artifactId>
+			<version>3.13.8</version>
+		</dependency>
+		<dependency>
 			<groupId>com.github.bartlomiej-gora</groupId>
 			<artifactId>RPNLibrary</artifactId>
 			<version>4.0.0</version>
@@ -73,6 +78,25 @@
 						<version>${kotlin.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>5.1.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/api.json</inputSpec>
+<!--							<language>kotlin</language>-->
+							<configOptions>
+								<sourceFolder>src/gen/java/main</sourceFolder>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
