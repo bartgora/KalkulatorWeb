@@ -15,6 +15,8 @@ class CalculatorController {
         tags = ["calculate"],
         pathParams = [OpenApiParam("input", String::class)],
         responses = [OpenApiResponse("200", [OpenApiContent(Array<Response>::class)])],
+        path = "calculate",
+        method = HttpMethod.GET
     )
     @GetMapping("/calculate/{input}")
     fun calculate(@PathVariable input: String): Response {

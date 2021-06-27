@@ -49,7 +49,6 @@ fun getConfiguredOpenApiPlugin() = OpenApiPlugin(
         path("/swagger-docs") // endpoint for OpenAPI json
         swagger(SwaggerOptions("/swagger-ui")) // endpoint for swagger-ui
         reDoc(ReDocOptions("/redoc")) // endpoint for redoc
-        activateAnnotationScanningFor("*")
     })
 
 fun replaceDiv(input: String): String {
