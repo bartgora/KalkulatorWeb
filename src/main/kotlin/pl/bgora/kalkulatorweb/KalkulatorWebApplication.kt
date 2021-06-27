@@ -39,20 +39,18 @@ fun main(args: Array<String>) {
 }
 
 fun getConfiguredOpenApiPlugin() = OpenApiPlugin(
-        OpenApiOptions(
-                Info().apply {
-                    version("1.0")
-                    description("User API")
-                }
-        ).apply {
-            path("/swagger-docs") // endpoint for OpenAPI json
-            swagger(SwaggerOptions("/swagger-ui")) // endpoint for swagger-ui
-            reDoc(ReDocOptions("/redoc")) // endpoint for redoc
-            defaultDocumentation { doc ->
-                doc.json("500", ErrorResponse::class.java)
-                doc.json("503", ErrorResponse::class.java)
-            }
-        })
+    OpenApiOptions(
+        Info().apply {
+            version("1.0")
+            description("calculator API")
+        }
+
+    ).apply {
+        path("/swagger-docs") // endpoint for OpenAPI json
+        swagger(SwaggerOptions("/swagger-ui")) // endpoint for swagger-ui
+        reDoc(ReDocOptions("/redoc")) // endpoint for redoc
+        activateAnnotationScanningFor("*")
+    })
 
 fun replaceDiv(input: String): String {
     return input.replace("div", "/")
