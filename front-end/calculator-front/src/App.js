@@ -1,19 +1,18 @@
 import React from "react";
-import { Container, Grid, TextField, Button } from "@material-ui/core";
+import Info from "./components/Info";
+import Calculator from "./components/Calculator";
+import ResultList from "./components/ResultList";
 
 const App = () => {
+
   return (
-    <Container maxWidth="sm">
-      <Grid container spacing={1}>
-        <Grid item xs={9}>
-          <TextField />
-        </Grid>
-        <Grid item xs={3}>
-          <Button>Calculate</Button>
-        </Grid>
-      </Grid>
-    </Container>
+    <div>
+    <Info/>
+    <Calculator/>
+    <ResultList/>
+    </div>
   );
 };
 
 export default App;
+
