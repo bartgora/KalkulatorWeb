@@ -2,6 +2,7 @@ package pl.bgora.kalkulatorweb
 
 import com.github.bgora.rpnlibrary.Calculator
 import io.javalin.plugin.openapi.annotations.*
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -18,6 +19,7 @@ class CalculatorController {
         path = "calculate",
         method = HttpMethod.GET
     )
+    @CrossOrigin
     @GetMapping("/calculate/{input}")
     fun calculate(@PathVariable input: String): Response {
         val calculator = Calculator.createCalculator();
