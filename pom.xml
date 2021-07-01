@@ -41,11 +41,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.javalin</groupId>
-			<artifactId>javalin-bundle</artifactId>
-			<version>3.13.8</version>
-		</dependency>
-		<dependency>
 			<groupId>com.github.bartlomiej-gora</groupId>
 			<artifactId>RPNLibrary</artifactId>
 			<version>4.0.0</version>
