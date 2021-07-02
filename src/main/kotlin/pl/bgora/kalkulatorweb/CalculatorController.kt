@@ -17,6 +17,6 @@ class CalculatorController {
         val result = calculator.calculate(replaceDiv(input)).toString()
         return Response(input, result)
     }
-
-    class Response(val input: String, val result: String)
 }
+
+class Response(val input: String, val result: String)
