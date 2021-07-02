@@ -5,13 +5,12 @@ import ResultList from "./components/ResultList";
 import { useEffect } from "react";
 import api from "./api";
 import { CalculationRecord } from "./collections";
-import { AxiosResponse } from "axios";
 
 interface Calculation {
   records: CalculationRecord[] | null;
 }
 
-const App = (props: Calculation) => {
+const App = () => {
   const [state, setState] = useState<Calculation>();
 
   useEffect(() => {
@@ -21,14 +20,27 @@ const App = (props: Calculation) => {
   }, []);
 
   const onCalculate = async (input: string) => {
-    const { data } = (await api.get("/calculate/" + input)) as AxiosResponse;
-    const result = data as String;
-    const record = { input, result } as CalculationRecord;
-    const records = state?.records || ([] as CalculationRecord[]);
-    records.push(record);
-    setState({
-      records: records,
-    });
+    await api
+      .get("/calculate/" + input)
+      .then((response) => {
+        const { data } = response;
+        const record = data as CalculationRecord;
+        const records = state?.records || ([] as CalculationRecord[]);
+        records.push(record);
+        setState({
+          records: records,
+        });
+      })
+      .catch((error) => {
+        const { errorMsg } = error.response.data;
+        const result = errorMsg as string;
+        const errorRecord = { input, result } as CalculationRecord;
+        const records = state?.records || ([] as CalculationRecord[]);
+        records.push(errorRecord);
+        setState({
+          records: records,
+        });
+      });
   };
   return (
     <div>

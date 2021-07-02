@@ -12,6 +12,6 @@ export const useStyles = makeStyles({
     height: "400px",
   },
   table: {
-    width: "650px",
+    width: "750px",
   },
 });

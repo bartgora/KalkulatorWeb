@@ -19,9 +19,8 @@ const ResultList = (props: Props) => {
   const styles = useStyles();
 
   const renderResults = () => {
-    return props.records.map(function (record) {
-      console.log(record);
-      <TableRow key={record.input}>
+    return props.records.map((record: CalculationRecord)=> {
+     return <TableRow key={record.input}>
         <TableCell component="th" scope="row">
           {record.input}
         </TableCell>
@@ -34,8 +33,10 @@ const ResultList = (props: Props) => {
       <TableContainer component={Paper}>
         <Table className={styles.table} aria-label="Results">
           <TableHead>
+            <TableRow>
             <TableCell align="center">Equation</TableCell>
             <TableCell align="center">Result</TableCell>
+            </TableRow>
           </TableHead>
           <TableBody>{renderResults()}</TableBody>
         </Table>
