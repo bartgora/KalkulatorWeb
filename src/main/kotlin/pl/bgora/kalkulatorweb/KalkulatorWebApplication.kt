@@ -31,6 +31,4 @@ class ControllerErrorHandler : ResponseEntityExceptionHandler() {
     }
 }
 
-class Response(val input: String, val result: String)
-
 class ErrorResponse(val status: HttpStatus, val errorMsg: String?)

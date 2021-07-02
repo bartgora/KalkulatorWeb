@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Button, Container, Grid, makeStyles, Paper, TextField } from "@material-ui/core";
+import { Button, Container, Grid, Paper, TextField } from "@material-ui/core";
+import { useStyles } from "../styles/styles";
 
 interface Props {
   onCalculate: (input: string) => void;
@@ -10,31 +11,43 @@ interface State {
 }
 
 const Calculator = (props: Props) => {
-
   const [state, setState] = useState<State>();
   useEffect(() => {
     setState({
-      value: ''
-    } as State)
+      value: "",
+    } as State);
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value
+    const newValue = event.target.value;
     setState({
-      value: newValue
+      value: newValue,
     } as State);
-  }
+  };
   const classes = useStyles();
-  const valueText = state?.value || "";
   return (
     <Container className={classes.container}>
       <Paper>
         <Grid container spacing={2}>
-          <Grid item >
-            <TextField label="Input" className={classes.editor} value={state?.value || ""} onChange={(event :ChangeEvent<HTMLInputElement>) => onChange(event)} />
+          <Grid item>
+            <TextField
+              label="Input"
+              className={classes.editor}
+              value={state?.value || ""}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                onChange(event)
+              }
+              variant="outlined"
+            />
           </Grid>
-          <Grid item >
-            <Button variant="contained" color="primary" onClick={() => props.onCalculate(valueText)}>Calculate</Button>
+          <Grid item>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => props.onCalculate(state?.value || "")}
+            >
+              Calculate
+            </Button>
           </Grid>
         </Grid>
       </Paper>
@@ -43,12 +56,3 @@ const Calculator = (props: Props) => {
 };
 
 export default Calculator;
-
-const useStyles = makeStyles({
-  container: {
-    width: "800px"
-  },
-  editor: {
-    width: "600px"
-  }
-});

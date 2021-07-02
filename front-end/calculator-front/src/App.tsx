@@ -21,15 +21,14 @@ const App = (props: Calculation) => {
   }, []);
 
   const onCalculate = async (input: string) => {
-    const { data } = await api.get("/calculate/"+input) as AxiosResponse;
+    const { data } = (await api.get("/calculate/" + input)) as AxiosResponse;
     const result = data as String;
     const record = { input, result } as CalculationRecord;
-    const records = state?.records || [] as CalculationRecord[];
+    const records = state?.records || ([] as CalculationRecord[]);
     records.push(record);
     setState({
-      records : records
+      records: records,
     });
-    
   };
   return (
     <div>
