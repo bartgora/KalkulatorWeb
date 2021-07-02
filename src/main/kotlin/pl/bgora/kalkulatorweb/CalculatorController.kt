@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@CrossOrigin
+
 class CalculatorController {
 
-    @CrossOrigin
     @GetMapping("/calculate/{input}")
     fun calculate(@PathVariable input: String): Response {
         val calculator = Calculator.createCalculator();

@@ -8,7 +8,15 @@ const Info = () => {
     <Container className={styles.container}>
       <Paper>
         <Grid container spacing={2}>
-          <Grid item>Info</Grid>
+          <Grid item>
+            <div>
+              <iframe
+                className={styles.iframe}
+                title="info"
+                src="http://bartlomiej-gora.github.io/RPNLibrary/"
+              ></iframe>
+            </div>
+          </Grid>
         </Grid>
       </Paper>
     </Container>

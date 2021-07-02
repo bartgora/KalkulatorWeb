@@ -34,7 +34,7 @@ const App = (props: Calculation) => {
     <div>
       <Info />
       <Calculator onCalculate={onCalculate} />
-      <ResultList />
+      <ResultList records={state?.records || []} />
     </div>
   );
 };

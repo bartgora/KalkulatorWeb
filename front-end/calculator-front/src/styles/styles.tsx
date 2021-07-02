@@ -7,4 +7,11 @@ export const useStyles = makeStyles({
   editor: {
     width: "600px",
   },
+  iframe: {
+    width: "750px",
+    height: "400px",
+  },
+  table: {
+    width: "650px",
+  },
 });
