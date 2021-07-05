@@ -7,7 +7,7 @@ To start:<br/>
 Requirements:<br/>
 ===
 
-JDK 11<br/>
+JDK 8<br/>
 Maven<br/>
 Node js
 
