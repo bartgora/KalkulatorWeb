@@ -8,7 +8,6 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
-import React from "react";
 import { CalculationRecord } from "../collections";
 import { useStyles } from "../styles/styles";
 
