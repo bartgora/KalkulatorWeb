@@ -44,7 +44,6 @@ const App = () => {
   };
   return (
     <div>
-      <Info />
       <Calculator onCalculate={onCalculate} />
       <ResultList records={state?.records || []} />
     </div>
