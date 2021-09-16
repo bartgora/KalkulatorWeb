@@ -6,7 +6,20 @@ services:
       - backend
     ports:
     - "80:80"
+    networks:
+      internal:
+        - ipv4_address: 172.17.0.1
   backend:
     image: "bartlomiejgora/calculator-web-kotlin:latest"
     ports:
     - "8080:8080"
+    networks:
+      internal:
+        - ipv4_address: 172.17.0.1
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.17.0.0/16
