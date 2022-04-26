@@ -1,5 +1,4 @@
 import { Container, Grid, Paper } from "@material-ui/core";
-import React from "react";
 import { useStyles } from "../styles/styles";
 
 const Info = () => {

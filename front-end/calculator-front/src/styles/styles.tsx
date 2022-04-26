@@ -9,7 +9,7 @@ export const useStyles = makeStyles({
   },
   iframe: {
     width: "750px",
-    height: "400px",
+    height: "600px",
   },
   table: {
     width: "750px",

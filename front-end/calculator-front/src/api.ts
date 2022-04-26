@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://loclahost:8080",
+  baseURL: "http://srv08.mikr.us:30531/",
 });

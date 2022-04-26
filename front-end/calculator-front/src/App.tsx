@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Info from "./components/Info";
 import Calculator from "./components/Calculator";
 import ResultList from "./components/ResultList";
@@ -21,7 +21,7 @@ const App = () => {
 
   const onCalculate = async (input: string) => {
     await api
-      .get("/calculate/" + input)
+      .post("/calculate", {"equation" : input})
       .then((response) => {
         const { data } = response;
         const record = data as CalculationRecord;
@@ -44,7 +44,6 @@ const App = () => {
   };
   return (
     <div>
-      <Info />
       <Calculator onCalculate={onCalculate} />
       <ResultList records={state?.records || []} />
     </div>
