@@ -21,7 +21,7 @@ const App = () => {
 
   const onCalculate = async (input: string) => {
     await api
-      .post("/calculate", {"equation" : input})
+      .post("/calculate", { equation: input })
       .then((response) => {
         const { data } = response;
         const record = data as CalculationRecord;
