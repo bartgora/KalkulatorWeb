@@ -8,6 +8,7 @@ const ResultList = () => {
 
   const { state } = useCalculatorState();
 
+  console.log('List state: ' + JSON.stringify(state));
   const renderResults = () => {
     return state.records?.map((record: CalculationRecord) => {
       return (

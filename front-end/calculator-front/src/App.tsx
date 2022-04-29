@@ -1,23 +1,19 @@
 import { useState } from 'react';
 import Calculator from './components/Calculator';
 import ResultList from './components/ResultList';
-import { useEffect } from 'react';
 import api from './api';
 import { CalculationRecord } from './collections';
 import { CalculatorContextProvider } from './context/CalculatorContext';
 
-interface Calculation {
+export interface Calculation {
   records?: CalculationRecord[];
 }
 
 const App = () => {
-  const [state, setState] = useState<Calculation>();
-
-  useEffect(() => {
-    setState({
-      records: [] as CalculationRecord[],
-    } as Calculation);
-  }, [state?.records]);
+  const [state, setState] = useState<Calculation>({
+    records: [],
+  });
+  console.log(JSON.stringify(state));
 
   const onCalculate = async (input: string) => {
     await api
@@ -44,7 +40,7 @@ const App = () => {
   };
   return (
     <div className="container">
-      <CalculatorContextProvider records={state?.records}>
+      <CalculatorContextProvider calculation={state}>
         <Calculator onCalculate={onCalculate} />
         <ResultList />
       </CalculatorContextProvider>

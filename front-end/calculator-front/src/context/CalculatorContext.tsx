@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { Calculation } from '../App';
 import { CalculationRecord } from '../collections';
 
 //to jest stan
@@ -23,26 +24,27 @@ const CalculatorContext = createContext<ICalculatorContext>({
 
 //popretis dla providera
 interface Props {
-  records?: CalculationRecord[];
+  calculation?: Calculation;
 }
 
-export function CalculatorContextProvider({ records, children }: React.PropsWithChildren<Props>) {
-  const initState = useRef(init());
+export function CalculatorContextProvider({ calculation, children }: React.PropsWithChildren<Props>) {
+  const initState = useRef<CalculatorState>(initData());
   const [state, setState] = useState<CalculatorState>(initState.current);
 
-  function init(): CalculatorState {
-    return records
-      ? {
-          records: [],
-          value: '',
-        }
-      : {};
+  function initData(): CalculatorState {
+    return { records: [], value: '' };
   }
+
+  useEffect(() => {
+    setState({
+      records: calculation?.records,
+    });
+  }, [calculation]);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setState({
-      ...records,
+      ...state?.records,
       value: newValue,
     });
   };
