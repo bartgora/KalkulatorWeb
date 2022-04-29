@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Info from "./components/Info";
 import Calculator from "./components/Calculator";
 import ResultList from "./components/ResultList";
 import { useEffect } from "react";
@@ -43,7 +42,7 @@ const App = () => {
       });
   };
   return (
-    <div>
+    <div className="container">
       <Calculator onCalculate={onCalculate} />
       <ResultList records={state?.records || []} />
     </div>

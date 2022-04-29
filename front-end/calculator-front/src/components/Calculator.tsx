@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Button, Container, Grid, Paper, TextField } from "@material-ui/core";
-import { useStyles } from "../styles/styles";
 
+import style from "./components.module.scss";
 interface Props {
   onCalculate: (input: string) => void;
 }
@@ -24,15 +24,14 @@ const Calculator = (props: Props) => {
       value: newValue,
     } as State);
   };
-  const classes = useStyles();
   return (
-    <Container className={classes.container}>
+    <Container>
       <Paper>
         <Grid container spacing={2}>
           <Grid item>
             <TextField
               label="Input"
-              className={classes.editor}
+              className={style.editor}
               value={state?.value || ""}
               onChange={(event: ChangeEvent<HTMLInputElement>) =>
                 onChange(event)
@@ -45,6 +44,7 @@ const Calculator = (props: Props) => {
               variant="contained"
               color="primary"
               onClick={() => props.onCalculate(state?.value || "")}
+              disabled={state?.value === ""}
             >
               Calculate
             </Button>
