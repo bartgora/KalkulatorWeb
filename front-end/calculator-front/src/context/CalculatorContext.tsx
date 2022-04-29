@@ -1,14 +1,13 @@
-import React, { createContext, useContext, useState } from "react";
-import { CalculationRecord } from "../collections";
+import React, { createContext, useContext, useRef, useState } from 'react';
+import { CalculationRecord } from '../collections';
 
 //to jest stan
 interface CalculatorState {
   value?: string;
-  records: CalculationRecord[];
+  records?: CalculationRecord[];
 }
 
 //context
-
 interface ICalculatorContext {
   state: CalculatorState;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -24,25 +23,31 @@ const CalculatorContext = createContext<ICalculatorContext>({
 
 //popretis dla providera
 interface Props {
-  records: CalculationRecord[];
+  records?: CalculationRecord[];
 }
 
-function CalculatorContextProvider({
-  records,
-  children,
-}: React.PropsWithChildren<Props>) {
-  const [state, setState] = useState<CalculatorState>({
-    records: [],
-    value: "",
-  });
+export function CalculatorContextProvider({ records, children }: React.PropsWithChildren<Props>) {
+  const initState = useRef(init());
+  const [state, setState] = useState<CalculatorState>(initState.current);
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+  function init(): CalculatorState {
+    return records
+      ? {
+          records: [],
+          value: '',
+        }
+      : {};
+  }
 
-  return (
-    <CalculatorContext.Provider value={{ state, onChange }}>
-      {children}
-    </CalculatorContext.Provider>
-  );
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    setState({
+      ...records,
+      value: newValue,
+    });
+  };
+
+  return <CalculatorContext.Provider value={{ state, onChange }}>{children}</CalculatorContext.Provider>;
 }
 
-export const useCalsulatorState = useContext(CalculatorContext);
+export const useCalculatorState = () => useContext(CalculatorContext);

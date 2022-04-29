@@ -1,23 +1,15 @@
-import {
-  Container,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@material-ui/core";
-import { CalculationRecord } from "../collections";
-import styles from "./components.module.scss";
-interface Props {
-  records: CalculationRecord[];
-}
-const ResultList = (props: Props) => {
+import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { CalculationRecord } from '../collections';
+import { useCalculatorState } from '../context/CalculatorContext';
+import styles from './components.module.scss';
+
+const ResultList = () => {
   let key = 0 as number;
 
+  const { state } = useCalculatorState();
+
   const renderResults = () => {
-    return props.records.map((record: CalculationRecord) => {
+    return state.records?.map((record: CalculationRecord) => {
       return (
         <TableRow key={key++}>
           <TableCell component="th" scope="row">

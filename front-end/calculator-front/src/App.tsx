@@ -1,12 +1,13 @@
-import { useState } from "react";
-import Calculator from "./components/Calculator";
-import ResultList from "./components/ResultList";
-import { useEffect } from "react";
-import api from "./api";
-import { CalculationRecord } from "./collections";
+import { useState } from 'react';
+import Calculator from './components/Calculator';
+import ResultList from './components/ResultList';
+import { useEffect } from 'react';
+import api from './api';
+import { CalculationRecord } from './collections';
+import { CalculatorContextProvider } from './context/CalculatorContext';
 
 interface Calculation {
-  records: CalculationRecord[] | null;
+  records?: CalculationRecord[];
 }
 
 const App = () => {
@@ -16,11 +17,11 @@ const App = () => {
     setState({
       records: [] as CalculationRecord[],
     } as Calculation);
-  }, []);
+  }, [state?.records]);
 
   const onCalculate = async (input: string) => {
     await api
-      .post("/calculate", { equation: input })
+      .post('/calculate', { equation: input })
       .then((response) => {
         const { data } = response;
         const record = data as CalculationRecord;
@@ -43,8 +44,10 @@ const App = () => {
   };
   return (
     <div className="container">
-      <Calculator onCalculate={onCalculate} />
-      <ResultList records={state?.records || []} />
+      <CalculatorContextProvider records={state?.records}>
+        <Calculator onCalculate={onCalculate} />
+        <ResultList />
+      </CalculatorContextProvider>
     </div>
   );
 };
